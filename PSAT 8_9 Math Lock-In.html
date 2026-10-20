@@ -1,0 +1,522 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>PSAT 8/9 Math Lock-In</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: same blue-pencil study sheet as the Grammar Lock-In. One reading column, sticky lesson bar, serif test-style math, a misses table, then a 20-question quiz with new numbers. */
+:root{
+  --paper:#F5F7FC; --card:#FFFFFF; --ink:#151C2E; --muted:#58627A; --line:#DCE1EE;
+  --blue:#2443C4; --blue-soft:#E6EBFB; --hl:#FFE27A; --hl-ink:#151C2E;
+  --good:#18774A; --good-soft:#E3F4EA; --bad:#B02A2A; --bad-soft:#FBE7E7;
+  --display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --test:"Source Serif 4", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F1320; --card:#171D2D; --ink:#E6EAF4; --muted:#9BA4BA; --line:#2A3247;
+  --blue:#93A8FF; --blue-soft:#1F2948; --hl:#5C4C10; --hl-ink:#FFF3C4;
+  --good:#6AD39C; --good-soft:#123323; --bad:#F28B8B; --bad-soft:#3A1A1C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1320; --card:#171D2D; --ink:#E6EAF4; --muted:#9BA4BA; --line:#2A3247;
+  --blue:#93A8FF; --blue-soft:#1F2948; --hl:#5C4C10; --hl-ink:#FFF3C4;
+  --good:#6AD39C; --good-soft:#123323; --bad:#F28B8B; --bad-soft:#3A1A1C; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--card)}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+p{margin:0}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+
+header{background:var(--card);border-bottom:1px solid var(--line)}
+header .wrap{padding-block:36px 28px;display:grid;gap:14px}
+.eyebrow{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:700}
+h1{font-size:clamp(2rem,5.5vw,3.1rem);font-weight:800;letter-spacing:-.01em}
+h1 .pencil{color:var(--blue)}
+.lede{color:var(--muted);max-width:62ch}
+.stem{font-family:var(--test);font-style:italic;background:var(--blue-soft);border-radius:8px;padding:10px 14px;max-width:62ch}
+.stem b{font-style:normal;font-family:var(--body);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:2px}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+nav .wrap{overflow-x:auto;scrollbar-width:thin}
+nav ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;white-space:nowrap}
+nav a{display:block;text-decoration:none;font-size:14px;padding:6px 11px;border-radius:999px;color:var(--muted);border:1px solid var(--line)}
+nav a:hover{color:var(--blue);border-color:var(--blue)}
+nav a.quiz-link{background:var(--blue);color:var(--card);border-color:var(--blue);font-weight:700}
+
+main .wrap{padding-block:28px 64px;display:grid;gap:44px}
+section{display:grid;gap:14px;scroll-margin-top:70px}
+.num{font-family:var(--display);font-weight:800;color:var(--blue);font-size:15px;letter-spacing:.04em}
+h2{font-size:clamp(1.45rem,3.6vw,1.85rem);font-weight:800}
+h3{font-size:1.08rem;font-weight:600;margin-top:6px}
+.rule{font-weight:700;border-left:4px solid var(--blue);padding:4px 0 4px 14px;max-width:62ch}
+section > p, section > ul, section > ol{max-width:66ch}
+ul,ol{margin:0;padding-left:1.3em;display:grid;gap:4px}
+mark{background:var(--hl);color:var(--hl-ink);padding:0 3px;border-radius:3px}
+
+/* Math */
+.eq{font-family:var(--test);font-size:19.5px;line-height:1.9;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 16px;overflow-x:auto;display:grid;gap:2px;max-width:66ch}
+.eq i,.m i,.qtext i,.opt i{font-family:var(--test);font-style:italic}
+.m{font-family:var(--test);font-size:1.06em}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;line-height:1.2;font-size:.95em}
+.fr > span:first-child{border-bottom:1.5px solid currentColor;padding:0 4px 1px}
+.fr > span:last-child{padding:1px 4px 0}
+.eq .note{font-family:var(--body);font-size:14px;color:var(--muted)}
+.ok-line{color:var(--good);font-family:var(--body);font-weight:700;font-size:14.5px}
+.no-line{color:var(--bad);font-family:var(--body);font-weight:700;font-size:14.5px}
+
+.trap{background:var(--bad-soft);border-radius:10px;padding:12px 16px;max-width:66ch}
+.trap b,.tip b{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px}
+.trap b{color:var(--bad)}
+.tip{background:var(--good-soft);border-radius:10px;padding:12px 16px;max-width:66ch}
+.tip b{color:var(--good)}
+.yours{background:var(--blue-soft);border-radius:10px;padding:12px 16px;max-width:66ch;font-size:15.5px}
+.yours b{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px;color:var(--blue)}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+th{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--paper)}
+td.s{font-family:var(--test);font-size:16.5px}
+td .y{color:var(--good);font-weight:700}
+td .n{color:var(--bad);font-weight:700}
+.tag{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:2px 9px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.tag.t1{color:var(--blue);border-color:var(--blue)}
+.tag.t3{color:var(--good);border-color:var(--good)}
+
+.checklist{counter-reset:c;list-style:none;padding:0;display:grid;gap:8px}
+.checklist li{counter-increment:c;display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:baseline;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.checklist li::before{content:counter(c);font-family:var(--display);font-weight:800;color:var(--blue);font-size:18px}
+
+/* Quiz */
+#quiz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;display:grid;gap:16px}
+.qtop{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.score{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.dots{display:flex;flex-wrap:wrap;gap:5px}
+.dot{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--paper);font-size:11.5px;color:var(--muted);cursor:pointer;padding:0;font-variant-numeric:tabular-nums}
+.dot.cur{border-color:var(--blue);color:var(--blue);font-weight:700}
+.dot.r{background:var(--good);border-color:var(--good);color:var(--card)}
+.dot.w{background:var(--bad);border-color:var(--bad);color:var(--card)}
+.qtext{font-family:var(--test);font-size:18.5px;line-height:1.75}
+.qstem{font-size:14.5px;font-weight:700;color:var(--muted)}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:30px 1fr;align-items:center;gap:10px;text-align:left;font:inherit;font-family:var(--test);font-size:17.5px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt .l{width:28px;height:28px;border-radius:50%;border:1px solid var(--muted);display:grid;place-items:center;font-family:var(--body);font-size:13px;font-weight:700}
+.opt.right{background:var(--good-soft);border-color:var(--good)}
+.opt.right .l{background:var(--good);border-color:var(--good);color:var(--card)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt.wrong .l{background:var(--bad);border-color:var(--bad);color:var(--card)}
+.opt:disabled{cursor:default}
+.fb{border-radius:10px;padding:12px 16px;display:grid;gap:6px;font-size:15.5px}
+.fb.r{background:var(--good-soft)} .fb.w{background:var(--bad-soft)}
+.fb .v{font-weight:700} .fb.r .v{color:var(--good)} .fb.w .v{color:var(--bad)}
+.fb .why{font-family:var(--test);font-size:17px;line-height:1.8}
+.fb .src{font-size:13.5px;color:var(--muted)}
+.qnav{display:flex;gap:8px;justify-content:space-between}
+.btn{font:inherit;font-weight:700;font-size:15px;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:var(--card)}
+.btn:disabled{opacity:.4;cursor:default}
+.results{display:grid;gap:12px}
+.big{font-family:var(--display);font-weight:800;font-size:2.6rem;color:var(--blue);line-height:1}
+.miss{display:grid;gap:6px;padding:0;list-style:none}
+.miss li{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+footer{color:var(--muted);font-size:13.5px;text-align:center;padding-block:0 32px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">PSAT 8/9 · Math · built from Practice Tests 1 and 3</div>
+    <h1>Math <span class="pencil">Lock-In</span></h1>
+    <p class="lede">Every skill behind the 13 math questions you missed on Practice 1 and Practice 3, plus the traps from your other chats. Read the 11 short lessons, check the test-day list, then take the quiz at the bottom: 20 new questions with new numbers, each one tied back to a lesson.</p>
+    <p class="stem"><b>Two habits that fix most of your misses</b>Say what the answer has to do before you look at the choices. Plug your answer back in before you move on.</p>
+  </div>
+</header>
+
+<nav aria-label="Lessons">
+  <div class="wrap"><ul>
+    <li><a href="#const">1 Constants</a></li>
+    <li><a href="#rate">2 Rate vs total</a></li>
+    <li><a href="#check">3 Plug back in</a></li>
+    <li><a href="#pct">4 Percent</a></li>
+    <li><a href="#words">5 Words to equation</a></li>
+    <li><a href="#sys">6 Systems</a></li>
+    <li><a href="#ineq">7 Inequalities</a></li>
+    <li><a href="#chunk">8 Chunks</a></li>
+    <li><a href="#scale">9 Scaling</a></li>
+    <li><a href="#mean">10 Means</a></li>
+    <li><a href="#signs">11 Signs</a></li>
+    <li><a href="#misses">Your 13 misses</a></li>
+    <li><a href="#checklist">Test-day list</a></li>
+    <li><a href="#practice" class="quiz-link">Practice quiz</a></li>
+  </ul></div>
+</nav>
+
+<main><div class="wrap">
+
+<section id="const">
+  <div class="num">LESSON 1</div>
+  <h2>What a number means in an equation</h2>
+  <p class="rule">In a linear equation, the plain number is the value when the variable is 0. The number next to the variable is the change for each 1 more.</p>
+  <div class="eq">
+    <div><i>A</i><sub>2</sub> = 10<i>d</i> + 471</div>
+    <div class="note">d = extra hours the satellite kept climbing</div>
+    <div>471 → the altitude when <i>d</i> = 0, the moment it began to climb</div>
+    <div>10 → the kilometers gained for each extra hour</div>
+  </div>
+  <div class="trap"><b>Trap</b>Picking "the altitude at a time of <i>d</i> hours." That describes the whole expression 10<i>d</i> + 471, not the 471 by itself. (Practice 3, Q21)</div>
+  <h3>Exponentials work the same way</h3>
+  <p>For <span class="m"><i>f</i>(<i>x</i>) = <i>a</i><sup><i>x</i></sup> + <i>b</i></span>, a y-intercept means <i>x</i> = 0, and any number to the power 0 is 1.</p>
+  <div class="eq">
+    <div>y-intercept (0, −323) → <i>f</i>(0) = −323</div>
+    <div><i>a</i><sup>0</sup> + <i>b</i> = −323 → 1 + <i>b</i> = −323</div>
+    <div><i>b</i> = −324</div>
+  </div>
+  <div class="yours"><b>Your miss</b>Practice 1 Advanced Math Q19 was left blank. It only needed the y-intercept and <i>a</i><sup>0</sup> = 1. The x-intercept was extra information.</div>
+  <div class="tip"><b>Two questions to ask</b>"What is happening when the variable is 0?" and "What changes for each 1 more?"</div>
+</section>
+
+<section id="rate">
+  <div class="num">LESSON 2</div>
+  <h2>Rate versus total: graphs and linear models</h2>
+  <p class="rule">The height of a graph is the total. The slope is the rate. A flat line means the rate is 0.</p>
+  <div class="eq">
+    <div>rate = <span class="fr"><span>change in <i>y</i></span><span>change in <i>x</i></span></span></div>
+  </div>
+  <div class="tbl"><table>
+    <tr><th>What you see</th><th>What it means</th></tr>
+    <tr><td>Line going up</td><td>The <strong>total</strong> is increasing. The rate is positive.</td></tr>
+    <tr><td>Straight line</td><td>The rate is <strong>constant</strong>, even if the total keeps rising.</td></tr>
+    <tr><td>Flat segment</td><td>The total is not changing. The rate is <strong>0</strong>.</td></tr>
+    <tr><td>Steeper segment</td><td>A <strong>faster</strong> rate.</td></tr>
+  </table></div>
+  <div class="trap"><b>Trap</b>"The rate increased between <i>x</i> = 0 and <i>x</i> = 4." The line rose, but it was straight, so the rate stayed the same. The total grew. (Practice 3, Q15)</div>
+  <h3>Linear model with a gap in the years</h3>
+  <p>57 thousand in 1991, 224 thousand in 2011, <i>x</i> thousand in 2015.</p>
+  <div class="eq">
+    <div>rate = <span class="fr"><span>224 − 57</span><span>2011 − 1991</span></span> = <span class="fr"><span>167</span><span>20</span></span> = 8.35 thousand per year</div>
+    <div>2011 → 2015 is only 4 years: 8.35 × 4 = 33.4</div>
+    <div>224 + 33.4 = 257.4 → <i>x</i> ≈ 257</div>
+    <div class="no-line">Adding the whole 167 to 224 gives 391, which uses the wrong time span.</div>
+  </div>
+  <div class="yours"><b>Your miss</b>Practice 1 Algebra Q15: you answered 391, which is 224 + 167. Always use the rate times the years that actually pass.</div>
+</section>
+
+<section id="check">
+  <div class="num">LESSON 3</div>
+  <h2>Solve, then plug back in</h2>
+  <p class="rule">Before you click, put your answer back into the question and check that it makes sense.</p>
+  <div class="eq">
+    <div><i>j</i>(<i>x</i>) = <i>mx</i> + 144 and <i>j</i>(12) = 18</div>
+    <div>18 = 12<i>m</i> + 144 → −126 = 12<i>m</i> → <i>m</i> = −10.5</div>
+    <div><i>j</i>(10) = (−10.5)(10) + 144 = −105 + 144 = 39</div>
+  </div>
+  <h3>A second check that takes 5 seconds: the size test</h3>
+  <p>The slope is −10.5, so each step down in <i>x</i> raises <i>j</i> by 10.5. Going from <i>x</i> = 12 to <i>x</i> = 10 is 2 steps, so <i>j</i> should rise by 21: 18 + 21 = 39. An answer like 139 would mean a rise of 121, which can't be right.</p>
+  <div class="yours"><b>Your miss</b>Practice 1 Algebra Q19: you answered 139 and the correct answer is 39. The setup was right, so a size check would have caught it.</div>
+  <div class="tip"><b>Desmos check</b>Type <span class="m"><i>y</i> = −10.5<i>x</i> + 144</span> and look at the table for <i>x</i> = 10.</div>
+</section>
+
+<section id="pct">
+  <div class="num">LESSON 4</div>
+  <h2>Percent: turn everything into multipliers</h2>
+  <p class="rule">Increase by <i>p</i>% means multiply by 1 + <i>p</i>/100. Decrease by <i>p</i>% means multiply by 1 − <i>p</i>/100.</p>
+  <div class="tbl"><table>
+    <tr><th>Change</th><th>Multiplier</th></tr>
+    <tr><td>+13%</td><td class="s">1.13</td></tr>
+    <tr><td>−16%</td><td class="s">0.84</td></tr>
+    <tr><td>+167%</td><td class="s">2.67</td></tr>
+    <tr><td>−25%</td><td class="s">0.75</td></tr>
+  </table></div>
+  <h3>Three rules</h3>
+  <ol>
+    <li><strong>"Times" to "percent greater":</strong> subtract 1. "1.13 times 100" means 13% greater than 100.</li>
+    <li><strong>Back-to-back changes:</strong> multiply the multipliers. Never add or subtract the percents.</li>
+    <li><strong>Working backward:</strong> divide by the multiplier. Never subtract the percent.</li>
+  </ol>
+  <div class="eq">
+    <div>+167% then −16%: 2.67 × 0.84 = 2.2428</div>
+    <div>2.2428 − 1 = 1.2428 → net increase of <mark>124.28%</mark></div>
+    <div class="no-line">167 − 16 = 151% is the trap answer.</div>
+    <div>After +25% the price is $80: 80 ÷ 1.25 = <mark>64</mark></div>
+    <div class="no-line">80 − 25% of 80 = 60 is the trap answer.</div>
+  </div>
+  <div class="yours"><b>Your misses</b>Practice 1 Q9 ("1.13 times 100") and Practice 1 Q22 (167% then −16%, left blank). Both are one-line multiplier problems.</div>
+</section>
+
+<section id="words">
+  <div class="num">LESSON 5</div>
+  <h2>Turning words into an equation</h2>
+  <p class="rule">Name each group, write how many are in it, then add them to equal the total. First decide what the total counts: sides, dollars or centimeters.</p>
+  <p>A 30-sided polygon has sides of 3 cm, 4 cm and 8 cm. There are <i>n</i> sides of 3 cm, 6 sides of 4 cm, and 5 times as many 8 cm sides as 3 cm sides.</p>
+  <div class="eq">
+    <div>3 cm sides: <i>n</i></div>
+    <div>4 cm sides: 6</div>
+    <div>8 cm sides: 5<i>n</i> ("5 times as many as <i>n</i>")</div>
+    <div><i>n</i> + 6 + 5<i>n</i> = 30 → <mark>6<i>n</i> + 6 = 30</mark></div>
+  </div>
+  <div class="trap"><b>Trap</b>Writing 8(5<i>n</i>) + 3<i>n</i> + 4(6) = 30. That multiplies each count by its length, so 30 would be the perimeter in cm. The question says 30 sides, so you add the <em>counts</em>.</div>
+  <div class="yours"><b>Your miss</b>Practice 1 Algebra Q22: you chose that perimeter-style equation.</div>
+</section>
+
+<section id="sys">
+  <div class="num">LESSON 6</div>
+  <h2>Systems: one solution, none, or infinitely many</h2>
+  <div class="tbl"><table>
+    <tr><th>Lines</th><th>Solutions</th><th>How to spot it</th></tr>
+    <tr><td>Cross</td><td><strong>One</strong></td><td>Different slopes</td></tr>
+    <tr><td>Parallel</td><td><strong>None</strong></td><td>Same slope, different y-intercept. Left sides are multiples, right sides are not.</td></tr>
+    <tr><td>Same line</td><td><strong>Infinitely many</strong></td><td>One equation is a multiple of the other, left side and right side.</td></tr>
+  </table></div>
+  <div class="eq">
+    <div>8<i>x</i> + 7<i>y</i> = 9</div>
+    <div>24<i>x</i> + 21<i>y</i> = 27</div>
+    <div class="note">Divide the second equation by 3 and you get the first. It's the same line.</div>
+    <div>So every point on 8<i>x</i> + 7<i>y</i> = 9 works. Solve for <i>y</i> with <i>x</i> = <i>r</i>:</div>
+    <div><i>y</i> = −<span class="fr"><span>8<i>r</i></span><span>7</span></span> + <span class="fr"><span>9</span><span>7</span></span> → point (<i>r</i>, −<span class="fr"><span>8<i>r</i></span><span>7</span></span> + <span class="fr"><span>9</span><span>7</span></span>)</div>
+  </div>
+  <div class="yours"><b>Your miss</b>Practice 1 Algebra Q21: you chose a point built as if the lines were different.</div>
+  <div class="tip"><b>Desmos check</b>Graph both equations. If you only see one line, they're the same line.</div>
+</section>
+
+<section id="ineq">
+  <div class="num">LESSON 7</div>
+  <h2>Inequalities with a negative number</h2>
+  <p class="rule">When you multiply or divide both sides by a negative number, flip the inequality sign.</p>
+  <div class="eq">
+    <div>−2<i>x</i> + 3 &gt; 11</div>
+    <div>−2<i>x</i> &gt; 8</div>
+    <div><i>x</i> &lt; −4 &nbsp;<span class="note">(flipped)</span></div>
+  </div>
+  <h3>Working backward to find a constant</h3>
+  <p>If <i>x</i> ≥ −8 is every solution of <i>ax</i> − 24 ≤ 32, what is the greatest possible value of <i>a</i>?</p>
+  <div class="eq">
+    <div><i>ax</i> ≤ 56</div>
+    <div>If <i>a</i> were positive: <i>x</i> ≤ <span class="fr"><span>56</span><span><i>a</i></span></span> (an upper limit, but the answer has a lower limit)</div>
+    <div>So <i>a</i> is negative and the sign flips: <i>x</i> ≥ <span class="fr"><span>56</span><span><i>a</i></span></span></div>
+    <div><span class="fr"><span>56</span><span><i>a</i></span></span> = −8 → 56 = −8<i>a</i> → <mark><i>a</i> = −7</mark></div>
+    <div class="ok-line">Check: −7<i>x</i> − 24 ≤ 32 → −7<i>x</i> ≤ 56 → <i>x</i> ≥ −8 ✓</div>
+    <div class="no-line">With <i>a</i> = −1 you get <i>x</i> ≥ −56, which doesn't match.</div>
+  </div>
+  <div class="yours"><b>Your miss</b>Practice 3 Q20: you knew the idea and answered −1. "Greatest possible" here doesn't mean pick the biggest-looking negative. Only one value of <i>a</i> works, so the check step finds it.</div>
+</section>
+
+<section id="chunk">
+  <div class="num">LESSON 8</div>
+  <h2>Treat an expression as one chunk</h2>
+  <p class="rule">When the question asks for the value of an expression and not for <i>x</i>, don't solve for <i>x</i>. Rearrange the equation until the expression sits alone.</p>
+  <div class="eq">
+    <div>3<i>x</i><sup>2</sup> − 18<i>x</i> − 15 = 0, find <i>x</i><sup>2</sup> − 6<i>x</i></div>
+    <div>Divide by 3: <i>x</i><sup>2</sup> − 6<i>x</i> − 5 = 0</div>
+    <div>Add 5: <mark><i>x</i><sup>2</sup> − 6<i>x</i> = 5</mark></div>
+  </div>
+  <div class="yours"><b>Your miss</b>Practice 1 Advanced Math Q21: you entered 1534, which looks like a late-module guess. It's a two-step problem.</div>
+</section>
+
+<section id="scale">
+  <div class="num">LESSON 9</div>
+  <h2>Scaling in geometry, and arc length</h2>
+  <p class="rule">A radius appears squared in area and volume formulas, so changing the radius changes the answer by the <em>square</em> of the change.</p>
+  <div class="eq">
+    <div>Cylinder: <i>V</i> = π<i>r</i><sup>2</sup><i>h</i></div>
+    <div>A second cylinder has <i>R</i> = 7<i>r</i> and <i>H</i> = 8<i>h</i>:</div>
+    <div>7<sup>2</sup> × 8 = 49 × 8 = <mark>392</mark> times as large</div>
+    <div class="no-line"><i>R</i> = 8<i>r</i>, <i>H</i> = 7<i>h</i> gives 8<sup>2</sup> × 7 = 448 instead.</div>
+  </div>
+  <div class="yours"><b>Your miss</b>Practice 1 Geometry Q20: you chose <i>R</i> = 8<i>r</i>, <i>H</i> = 49<i>h</i>, which squares the height by mistake. Only the radius is squared.</div>
+  <h3>Arc length</h3>
+  <p><i>s</i> = <i>r</i>θ with θ in <strong>radians</strong>. A 60° angle is π/3 radians.</p>
+  <div class="eq">
+    <div><i>r</i> = 3, θ = <span class="fr"><span>π</span><span>3</span></span> → <i>s</i> = 3 · <span class="fr"><span>π</span><span>3</span></span> = π</div>
+  </div>
+</section>
+
+<section id="mean">
+  <div class="num">LESSON 10</div>
+  <h2>Mean from a frequency table</h2>
+  <p class="rule">The mean sits where the data balances. More weight on the high values pulls it up, and symmetric frequencies put it exactly in the middle.</p>
+  <div class="tbl"><table>
+    <tr><th>Value</th><th>70</th><th>80</th><th>90</th><th>100</th><th>Mean</th></tr>
+    <tr><td>Set A</td><td class="s">4</td><td class="s">5</td><td class="s">6</td><td class="s">7</td><td>above 85</td></tr>
+    <tr><td>Set C</td><td class="s">7</td><td class="s">6</td><td class="s">6</td><td class="s">7</td><td>exactly 85 (symmetric)</td></tr>
+  </table></div>
+  <p>Set A has more data at 90 and 100 than at 80 and 70, so its mean is above the middle, 85. No arithmetic needed.</p>
+  <div class="yours"><b>Your miss</b>Practice 1 Q18: you chose Set C, the symmetric one, instead of the one weighted toward the high values.</div>
+</section>
+
+<section id="signs">
+  <div class="num">LESSON 11</div>
+  <h2>Distributing a minus sign</h2>
+  <p class="rule">A minus sign in front of parentheses flips <em>every</em> sign inside.</p>
+  <div class="eq">
+    <div>180 − (9<i>x</i> − 560)</div>
+    <div>= 180 − 9<i>x</i> + 560</div>
+    <div>= <mark>740 − 9<i>x</i></mark></div>
+  </div>
+  <p>This came up in your other chats, so it's a habit to build. Draw an arrow from the minus sign to each term inside the parentheses.</p>
+  <div class="tip"><b>Pacing and Desmos</b>Each math module is 22 questions in 35 minutes, so be near question 11 at the 17-minute mark. On Practice 1, 8 of your 10 math misses came in the last 5 questions of a module. If you're stuck after about 90 seconds, pick an answer, flag it, and move on. Use Desmos to check, not to replace your setup: graph systems, check <i>f</i>(10) in a table, and test an inequality boundary.</div>
+</section>
+
+<section id="misses">
+  <div class="num">YOUR RECORD</div>
+  <h2>The 13 math questions you missed</h2>
+  <p>Redo each one cold, then check the lesson. Question numbers restart in each math module.</p>
+  <div class="tbl"><table>
+    <tr><th>Test</th><th>Question</th><th>You</th><th>Right</th><th>Lesson</th></tr>
+    <tr><td><span class="tag t1">Practice 1</span></td><td>Algebra Q15, population model</td><td class="s"><span class="n">391</span></td><td class="s"><span class="y">257</span></td><td><a href="#rate">2 Rate vs total</a></td></tr>
+    <tr><td><span class="tag t1">Practice 1</span></td><td>Algebra Q19, <i>j</i>(10)</td><td class="s"><span class="n">139</span></td><td class="s"><span class="y">39</span></td><td><a href="#check">3 Plug back in</a></td></tr>
+    <tr><td><span class="tag t1">Practice 1</span></td><td>Algebra Q21, repeated line</td><td class="s"><span class="n">D</span></td><td class="s"><span class="y">A</span></td><td><a href="#sys">6 Systems</a></td></tr>
+    <tr><td><span class="tag t1">Practice 1</span></td><td>Algebra Q22, 30-sided polygon</td><td class="s"><span class="n">D</span></td><td class="s"><span class="y">B</span></td><td><a href="#words">5 Words to equation</a></td></tr>
+    <tr><td><span class="tag t1">Practice 1</span></td><td>Advanced Math Q19, <i>a</i><sup><i>x</i></sup> + <i>b</i></td><td class="s"><span class="n">blank</span></td><td class="s"><span class="y">−324</span></td><td><a href="#const">1 Constants</a></td></tr>
+    <tr><td><span class="tag t1">Practice 1</span></td><td>Advanced Math Q21, <i>x</i><sup>2</sup> − 6<i>x</i></td><td class="s"><span class="n">1534</span></td><td class="s"><span class="y">5</span></td><td><a href="#chunk">8 Chunks</a></td></tr>
+    <tr><td><span class="tag t1">Practice 1</span></td><td>Problem-Solving Q9, "1.13 times 100"</td><td class="s"><span class="n">A</span></td><td class="s"><span class="y">B</span></td><td><a href="#pct">4 Percent</a></td></tr>
+    <tr><td><span class="tag t1">Practice 1</span></td><td>Problem-Solving Q18, greatest mean</td><td class="s"><span class="n">C</span></td><td class="s"><span class="y">A</span></td><td><a href="#mean">10 Means</a></td></tr>
+    <tr><td><span class="tag t1">Practice 1</span></td><td>Problem-Solving Q22, +167% then −16%</td><td class="s"><span class="n">blank</span></td><td class="s"><span class="y">A</span></td><td><a href="#pct">4 Percent</a></td></tr>
+    <tr><td><span class="tag t1">Practice 1</span></td><td>Geometry Q20, cylinder volume</td><td class="s"><span class="n">B</span></td><td class="s"><span class="y">C</span></td><td><a href="#scale">9 Scaling</a></td></tr>
+    <tr><td><span class="tag t3">Practice 3</span></td><td>Problem-Solving Q15, snowfall graph</td><td class="s"><span class="n">C</span></td><td class="s"><span class="y">D</span></td><td><a href="#rate">2 Rate vs total</a></td></tr>
+    <tr><td><span class="tag t3">Practice 3</span></td><td>Algebra Q20, inequality with <i>a</i></td><td class="s"><span class="n">−1</span></td><td class="s"><span class="y">−7</span></td><td><a href="#ineq">7 Inequalities</a></td></tr>
+    <tr><td><span class="tag t3">Practice 3</span></td><td>Algebra Q21, what 471 means</td><td class="s"><span class="n">A</span></td><td class="s"><span class="y">D</span></td><td><a href="#const">1 Constants</a></td></tr>
+  </table></div>
+  <p>Three of these were blanks or late-module guesses on Practice 1. The other ten came from reading or setup slips, and the lessons above cover each one.</p>
+</section>
+
+<section id="checklist">
+  <div class="num">TEST DAY</div>
+  <h2>Math checklist for tomorrow</h2>
+  <ol class="checklist">
+    <li>Before choosing, finish the sentence in your head: "The right answer has to ______."</li>
+    <li>Plain number is the value at 0. Number next to the variable is the change per 1.</li>
+    <li>Graph: height is the total, slope is the rate, flat means rate 0.</li>
+    <li>Percent: multiply multipliers. Divide to go backward. "Times" minus 1 is "percent greater."</li>
+    <li>Dividing or multiplying by a negative? Write "flip" next to it.</li>
+    <li>Plug your answer back in. Ask whether the size makes sense.</li>
+    <li>Stuck for about 90 seconds? Pick an answer, flag it, move on. Never leave a blank.</li>
+    <li>Be near question 11 at the 17-minute mark of each module.</li>
+  </ol>
+</section>
+
+<section id="practice">
+  <div class="num">PRACTICE</div>
+  <h2>Practice quiz: 20 new questions</h2>
+  <p>Same skills, new numbers. Answer each one and read the explanation. At the end, the results screen links every question you miss back to its lesson.</p>
+  <div id="quiz" aria-live="polite"></div>
+</section>
+
+</div></main>
+<footer><div class="wrap">Built from your PSAT 8/9 Practice 1 (Oct 4) and Practice 3 (Oct 18) misses.</div></footer>
+
+<script>
+const fr=(a,b)=>`<span class="fr"><span>${a}</span><span>${b}</span></span>`;
+const LESSON={
+  const:{n:'1 Constants',s:'const'}, rate:{n:'2 Rate vs total',s:'rate'}, check:{n:'3 Plug back in',s:'check'},
+  pct:{n:'4 Percent',s:'pct'}, words:{n:'5 Words to equation',s:'words'}, sys:{n:'6 Systems',s:'sys'},
+  ineq:{n:'7 Inequalities',s:'ineq'}, chunk:{n:'8 Chunks',s:'chunk'}, scale:{n:'9 Scaling',s:'scale'},
+  mean:{n:'10 Means',s:'mean'}, signs:{n:'11 Signs',s:'signs'}
+};
+const Q=[
+{k:'const',q:`A candle's height in centimeters after <i>t</i> hours is <i>h</i> = 30 − 2.5<i>t</i>. Which is the best interpretation of 30 in this context?`,
+ o:['The height lost each hour','The height of the candle after 1 hour','The starting height of the candle','The number of hours until the candle burns out'],a:2,
+ e:`Put in <i>t</i> = 0: <i>h</i> = 30. So 30 is the height at the start. The 2.5 is what is lost each hour. The burn-out time would be 30 ÷ 2.5 = 12 hours, a different number.`},
+{k:'const',q:`A plumber's charge in dollars is <i>C</i> = 65<i>h</i> + 40, where <i>h</i> is the number of hours worked. Which is the best interpretation of 65?`,
+ o:['The increase in the charge for each additional hour','The charge for 0 hours','The charge for 1 hour','The charge for 65 hours'],a:0,
+ e:`The number next to the variable is the change per 1 more. Each extra hour adds $65. The charge for 0 hours is the 40, and the charge for 1 hour is 65 + 40 = 105.`},
+{k:'const',q:`The function <i>f</i>(<i>x</i>) = <i>a</i><sup><i>x</i></sup> + <i>b</i> has a y-intercept at (0, −49). What is the value of <i>b</i>?`,
+ o:['−48','−50','−49','49'],a:1,
+ e:`A y-intercept means <i>x</i> = 0, and <i>a</i><sup>0</sup> = 1. So 1 + <i>b</i> = −49, which gives <i>b</i> = −50. Choosing −48 comes from adding 1 instead of subtracting it.`},
+{k:'rate',q:`A graph shows total distance walked, in km, against time in hours. The line goes straight from (0, 0) to (2, 6), is flat from hour 2 to hour 3, then goes straight from (3, 6) to (5, 9). Which statement is true?`,
+ o:['The speed was 6 km per hour between hour 2 and hour 3','The speed was greatest between hour 3 and hour 5','The speed was 0 km per hour between hour 2 and hour 3','The speed increased between hour 0 and hour 2'],a:2,
+ e:`Slope is speed. A flat line means the total isn't changing, so the speed is 0. The speeds were ${fr('6','2')} = 3 km/h from 0 to 2 and ${fr('3','2')} = 1.5 km/h from 3 to 5. The first one is a straight line, so the speed was constant, not increasing. The 6 is the total distance, not the speed.`},
+{k:'rate',q:`A linear model estimates a town's population was 40 thousand in 2000, 90 thousand in 2020, and <i>x</i> thousand in 2024. To the nearest whole number, what is <i>x</i>?`,
+ o:['110','140','100','125'],a:2,
+ e:`Rate = ${fr('90 − 40','2020 − 2000')} = ${fr('50','20')} = 2.5 thousand per year. From 2020 to 2024 is 4 years: 2.5 × 4 = 10. So <i>x</i> = 90 + 10 = 100. The 140 comes from adding the whole 50 to 90.`},
+{k:'check',q:`For the linear function <i>j</i>(<i>x</i>) = <i>mx</i> + 60, <i>m</i> is a constant and <i>j</i>(5) = 25. What is the value of <i>j</i>(8)?`,
+ o:['16','4','100','−4'],a:1,
+ e:`25 = 5<i>m</i> + 60 → −35 = 5<i>m</i> → <i>m</i> = −7. Then <i>j</i>(8) = −56 + 60 = 4. Size check: the slope is −7, and 3 steps from <i>x</i> = 5 to 8 should drop <i>j</i> by 21: 25 − 21 = 4. ✓`},
+{k:'pct',q:`The value of <i>w</i> is 1.27 times 200. The value of <i>w</i> is what percent greater than 200?`,
+ o:['12.7','127','27','270'],a:2,
+ e:`"Times" minus 1 gives the percent greater. 1.27 − 1 = 0.27, so <i>w</i> is 27% greater than 200. Check: 200 × 1.27 = 254, which is 54 more than 200, and ${fr('54','200')} = 0.27. ✓`},
+{k:'pct',q:`A price increased by 20% and then decreased by 25%. What was the net change?`,
+ o:['10% increase','10% decrease','5% decrease','5% increase'],a:1,
+ e:`Multiply the multipliers: 1.20 × 0.75 = 0.90. That is 10% less than the start, a 10% decrease. Taking 20 − 25 = −5 is the trap.`},
+{k:'pct',q:`After a 25% increase, the price of a jacket is $80. What was the price before the increase?`,
+ o:['$64','$60','$100','$55'],a:0,
+ e:`Divide by the multiplier: 80 ÷ 1.25 = 64. Check: 64 × 1.25 = 80. ✓ Subtracting 25% of 80 gives $60, which is the trap.`},
+{k:'words',q:`Each side of a 40-sided polygon has one of three lengths: 2 cm, 5 cm or 9 cm. The number of sides with length 9 cm is 3 times the number <i>n</i> of sides with length 5 cm. There are 8 sides with length 2 cm. Which equation must be true for <i>n</i>?`,
+ o:['3<i>n</i> + 8 = 40','4<i>n</i> + 8 = 40','9(3<i>n</i>) + 5<i>n</i> + 2(8) = 40','5<i>n</i> + 8 = 40'],a:1,
+ e:`Count the sides: 5 cm sides = <i>n</i>, 9 cm sides = 3<i>n</i>, 2 cm sides = 8. So <i>n</i> + 3<i>n</i> + 8 = 40, which is 4<i>n</i> + 8 = 40. Check: <i>n</i> = 8 gives 8 + 24 + 8 = 40. ✓ The third choice multiplies by lengths, so its 40 would be a perimeter.`},
+{k:'sys',q:`How many solutions does this system have?<br>2<i>x</i> + 5<i>y</i> = 7<br>4<i>x</i> + 10<i>y</i> = 20`,
+ o:['No solution','Exactly one solution','Exactly two solutions','Infinitely many solutions'],a:0,
+ e:`Double the first equation: 4<i>x</i> + 10<i>y</i> = 14. The second equation says the same left side equals 20. Same slope and different intercepts mean parallel lines, so there is no solution.`},
+{k:'sys',q:`<i>kx</i> + 4<i>y</i> = 12<br>3<i>x</i> + 2<i>y</i> = 6<br>For which value of <i>k</i> does the system have infinitely many solutions?`,
+ o:['3','4','6','12'],a:2,
+ e:`The second equation times 2 is 6<i>x</i> + 4<i>y</i> = 12. For the first equation to be the same line, <i>k</i> = 6. Graphing both in Desmos would show one line.`},
+{k:'ineq',q:`Which gives all solutions of −3<i>x</i> + 5 ≤ 17?`,
+ o:['<i>x</i> ≥ 4','<i>x</i> ≤ −4','<i>x</i> ≥ −4','<i>x</i> ≤ 4'],a:2,
+ e:`−3<i>x</i> ≤ 12. Dividing by −3 flips the sign: <i>x</i> ≥ −4. Check <i>x</i> = 0: −3(0) + 5 = 5 ≤ 17 ✓, and 0 ≥ −4 ✓.`},
+{k:'ineq',q:`If <i>x</i> ≥ −2 represents all solutions to the inequality <i>ax</i> + 6 ≤ 18, where <i>a</i> is a constant, what is the value of <i>a</i>?`,
+ o:['6','−6','−2','−10'],a:1,
+ e:`<i>ax</i> ≤ 12. The answer is a lower limit (<i>x</i> ≥ −2), so <i>a</i> is negative and the sign flips: <i>x</i> ≥ ${fr('12','<i>a</i>')}. Set ${fr('12','<i>a</i>')} = −2, so <i>a</i> = −6. Check: −6<i>x</i> + 6 ≤ 18 → −6<i>x</i> ≤ 12 → <i>x</i> ≥ −2. ✓`},
+{k:'chunk',q:`If 2<i>x</i><sup>2</sup> + 8<i>x</i> − 6 = 0, what is the value of <i>x</i><sup>2</sup> + 4<i>x</i>?`,
+ o:['3','6','−3','12'],a:0,
+ e:`Divide the whole equation by 2: <i>x</i><sup>2</sup> + 4<i>x</i> − 3 = 0. Add 3 to both sides: <i>x</i><sup>2</sup> + 4<i>x</i> = 3. You never have to find <i>x</i>. (The 6 is what 2<i>x</i><sup>2</sup> + 8<i>x</i> equals before dividing.)`},
+{k:'scale',q:`A right circular cylinder has radius <i>r</i> and height <i>h</i>. A second right circular cylinder has a volume 72 times as large. Which could be its radius <i>R</i> and height <i>H</i>?`,
+ o:['<i>R</i> = 9<i>r</i> and <i>H</i> = 8<i>h</i>','<i>R</i> = 3<i>r</i> and <i>H</i> = 8<i>h</i>','<i>R</i> = 6<i>r</i> and <i>H</i> = 12<i>h</i>','<i>R</i> = 8<i>r</i> and <i>H</i> = 9<i>h</i>'],a:1,
+ e:`The volume factor is (radius factor)<sup>2</sup> × (height factor). For <i>R</i> = 3<i>r</i>, <i>H</i> = 8<i>h</i>: 3<sup>2</sup> × 8 = 72. ✓ The others give 648, 432 and 576.`},
+{k:'mean',q:`Each table lists how many times the values 10, 20, 30 and 40 appear in a data set. Which data set has the greatest mean?<br>A. frequencies 9, 7, 5, 3<br>B. frequencies 5, 5, 5, 5<br>C. frequencies 4, 6, 6, 4<br>D. frequencies 3, 5, 7, 9`,
+ o:['A','B','C','D'],a:3,
+ e:`B and C are symmetric, so their mean is the middle, 25. A puts more weight on the low values, so its mean is below 25. D puts more weight on 30 and 40, so its mean is above 25. D has the greatest mean (about 29.2).`},
+{k:'signs',q:`Which expression is equivalent to 150 − (4<i>x</i> − 30)?`,
+ o:['180 + 4<i>x</i>','180 − 4<i>x</i>','120 − 4<i>x</i>','120 + 4<i>x</i>'],a:1,
+ e:`The minus sign flips every sign inside: 150 − 4<i>x</i> + 30 = 180 − 4<i>x</i>. Check <i>x</i> = 0: 150 − (−30) = 180. ✓`},
+{k:'pct',q:`A value increased by 30% and then decreased by 10%. What was the net percent increase?`,
+ o:['20%','17%','27%','40%'],a:1,
+ e:`1.30 × 0.90 = 1.17, so the net change is +17%. Adding 30 − 10 = 20 is the trap.`},
+{k:'scale',q:`A circle has radius 6. A central angle of 60° (which is ${fr('π','3')} radians) intercepts an arc. What is the arc length?`,
+ o:['6π','π','12π','2π'],a:3,
+ e:`<i>s</i> = <i>r</i>θ = 6 · ${fr('π','3')} = 2π. You must use radians in this formula. Check: 60° is ${fr('1','6')} of the circle, and ${fr('1','6')} of 12π is 2π. ✓`}
+];
+const L='ABCD';
+let cur=0;const ans=Array(Q.length).fill(null);
+const box=document.getElementById('quiz');
+function score(){return ans.reduce((s,a,i)=>s+(a===Q[i].a?1:0),0)}
+function draw(){
+  const q=Q[cur],a=ans[cur],done=ans.filter(x=>x!==null).length;
+  const dots=Q.map((_,i)=>{const s=ans[i]===null?'':(ans[i]===Q[i].a?' r':' w');return `<button class="dot${i===cur?' cur':''}${s}" data-i="${i}" aria-label="Question ${i+1}">${i+1}</button>`}).join('');
+  const opts=q.o.map((t,i)=>{let c='opt';if(a!==null){if(i===q.a)c+=' right';else if(i===a)c+=' wrong'}
+    return `<button class="${c}" data-o="${i}" ${a!==null?'disabled':''}><span class="l">${L[i]}</span><span>${t}</span></button>`}).join('');
+  let fb='';
+  if(a!==null){const ok=a===q.a,ls=LESSON[q.k];
+    fb=`<div class="fb ${ok?'r':'w'}"><div class="v">${ok?'Correct.':'Not quite. The answer is '+L[q.a]+'.'}</div><div class="why">${q.e}</div><div class="src">Skill: ${ls.n} · <a href="#${ls.s}">Go to lesson</a></div></div>`}
+  const last=cur===Q.length-1;
+  box.innerHTML=`<div class="qtop"><span>Question ${cur+1} of ${Q.length}</span><span class="score">${score()} correct · ${done} answered</span></div>
+  <div class="dots">${dots}</div>
+  <div class="qtext">${q.q}</div>
+  <div class="opts">${opts}</div>${fb}
+  <div class="qnav"><button class="btn" id="pv" ${cur===0?'disabled':''}>Back</button>
+  <button class="btn pri" id="nx" ${(a===null&&!last)||(last&&done<Q.length)?'disabled':''}>${last?'See results':'Next'}</button></div>`;
+  box.querySelectorAll('.dot').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;draw()});
+  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans[cur]=+b.dataset.o;draw()});
+  document.getElementById('pv').onclick=()=>{cur--;draw()};
+  document.getElementById('nx').onclick=()=>{if(last)results();else{cur++;draw()}};
+}
+function results(){
+  const s=score(),miss={};
+  ans.forEach((a,i)=>{if(a!==Q[i].a){const k=Q[i].k;miss[k]=(miss[k]||0)+1}});
+  const keys=Object.keys(miss);
+  const msg=s>=18?'Locked in. Keep your pacing and plug-back-in habit.':s>=15?'Strong. Review the lessons below for the ones you missed.':s>=11?'A good base. Go back to the lessons below, then retake the quiz.':'Spend time with the lessons below, then try again. These ideas click fast with practice.';
+  box.innerHTML=`<div class="results"><div class="big">${s} / ${Q.length}</div><p>${msg}</p>
+  ${keys.length?`<p class="qstem">Lessons to review</p><ul class="miss">${keys.map(k=>`<li><span>${LESSON[k].n} · missed ${miss[k]}</span><a href="#${LESSON[k].s}">Go to lesson</a></li>`).join('')}</ul>`:''}
+  <div class="qnav"><button class="btn" id="rv">Review answers</button><button class="btn pri" id="rt">Retake quiz</button></div></div>`;
+  document.getElementById('rv').onclick=()=>{cur=0;draw()};
+  document.getElementById('rt').onclick=()=>{ans.fill(null);cur=0;draw()};
+}
+draw();
+</script>
+
+</body></html>
